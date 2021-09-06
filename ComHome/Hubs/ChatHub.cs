@@ -9,5 +9,12 @@ namespace ComHome.Hubs {
         public async Task SendMessage(string user, string message) {
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
+
+        public async Task GetBigData() {
+            string[] array = new string[] { "q", "w", "e" };
+            await Clients.All.SendAsync("BigDataMessage", array);
+        }
+
+
     }
 }

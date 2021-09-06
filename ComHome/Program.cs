@@ -1,3 +1,4 @@
+using ComHome.Hubs;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -6,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ComHome.Data;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ComHome {
     public class Program {
@@ -17,6 +20,9 @@ namespace ComHome {
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder => {
                     webBuilder.UseStartup<Startup>();
+                })
+                .ConfigureServices(services => {
+                    services.AddHostedService<ComHomeService>();
                 });
     }
 }

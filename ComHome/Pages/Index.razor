@@ -16,6 +16,7 @@
     </label>
 </div>
 <button @onclick="Send" disabled="@(!IsConnected)">Send</button>
+<button @onclick="Request" disabled="@(!IsConnected)">Request</button>
 
 <hr>
 
@@ -41,15 +42,25 @@
             messages.Add(encodedMsg);
             StateHasChanged();
         });
+        hubConnection.On<string[]>("BigDataMessage", (arr) => {
+            if (arr.Length > 0) {
+                foreach (string s in arr) {
+                    messages.Add($"server say: {s}");
+                }
+            }
+            StateHasChanged();
+        });
 
         await hubConnection.StartAsync();
     }
 
     async Task Send() =>
         await hubConnection.SendAsync("SendMessage", userInput, messageInput);
+    async Task Request() =>
+        await hubConnection.SendAsync("GetBigData");
 
     public bool IsConnected =>
-        hubConnection.State == HubConnectionState.Connected;
+    hubConnection.State == HubConnectionState.Connected;
 
     public async ValueTask DisposeAsync() {
         if (hubConnection is not null) {
