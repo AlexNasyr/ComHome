@@ -22,7 +22,7 @@ namespace ComHome {
                     webBuilder.UseStartup<Startup>();
                 })
                 .ConfigureServices(services => {
-                    services.AddHostedService<ComHomeService>();
+                    services.AddHostedService<CHSensorService>();
                 });
     }
 }
