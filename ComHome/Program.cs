@@ -22,7 +22,10 @@ namespace ComHome {
                     webBuilder.UseStartup<Startup>();
                 })
                 .ConfigureServices(services => {
+                    IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("secrets.json").Build();
+                    var connstr = configuration.GetConnectionString("DefaultDB");
                     services.AddHostedService<CHSensorService>();
+                    services.AddTransient<IComHomeRepository>(r => new ComHomeRepository(connstr)); //, ComHomeRepository>();
                     services.AddTransient<CHClientService>();
                 });
     }

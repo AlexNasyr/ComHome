@@ -20,6 +20,7 @@
 <button @onclick="Send" disabled="@(!IsConnected)">Send</button>
 <button @onclick="Request" disabled="@(!IsConnected)">Request</button>
 <button @onclick="Get5" disabled="@(!IsConnected)">Get 5</button>
+<button @onclick="GetHist" disabled="@(!IsConnected)">Get 5</button>
 
 <hr>
 
@@ -65,6 +66,11 @@
         await hubConnection.SendAsync("GetBigData");
     async Task Get5() {
         int res = await ClientService.GetSomeData();
+        messages.Add(res.ToString());
+        StateHasChanged();
+    }
+    async Task GetHist() {
+        string res = await ClientService.GetHistorical();
         messages.Add(res.ToString());
         StateHasChanged();
     }

@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 namespace ComHome.Data
 {
     public interface IComHomeRepository {
-        void GetHistoricalMeasurements();
+        string GetHistoricalMeasurements();
     }
 }

@@ -11,8 +11,8 @@ namespace ComHome.Data {
         }
         public ComHomeRepository() {
         }
-        public void GetHistoricalMeasurements() {
-            throw new NotImplementedException();
+        public string GetHistoricalMeasurements() {
+            return $"historical data from DB with connStr {connectionString}";
         }
     }
 }
