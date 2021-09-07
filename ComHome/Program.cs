@@ -23,6 +23,7 @@ namespace ComHome {
                 })
                 .ConfigureServices(services => {
                     services.AddHostedService<CHSensorService>();
+                    services.AddTransient<CHClientService>();
                 });
     }
 }

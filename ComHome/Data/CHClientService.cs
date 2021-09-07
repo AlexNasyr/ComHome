@@ -10,7 +10,6 @@ namespace ComHome.Data {
         public CHClientService(IComHomeRepository repo) {
             repository = repo;
         }
-
-        public int GetSomeData() => 5;
+        public Task<int> GetSomeData() => Task.FromResult(5);
     }
 }

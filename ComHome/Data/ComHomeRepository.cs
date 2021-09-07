@@ -9,6 +9,8 @@ namespace ComHome.Data {
         public ComHomeRepository(string connString) {
             connectionString = connString;
         }
+        public ComHomeRepository() {
+        }
         public void GetHistoricalMeasurements() {
             throw new NotImplementedException();
         }
