@@ -1,18 +1,22 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ComHome.Data {
     public class ComHomeRepository : IComHomeRepository {
-        private string connectionString;
-        public ComHomeRepository(string connString) {
-            connectionString = connString;
+        private DbContext dbContext;
+        public ComHomeRepository(DbContext context) {
+            dbContext = context;
         }
-        public ComHomeRepository() {
-        }
+
+        //public ComHomeRepository() {
+        //}
+        //using dbcontext.dbsets here
+
         public string GetHistoricalMeasurements() {
-            return $"historical data from DB with connStr {connectionString}";
+            return $"historical data from DB with connStr {dbContext.Model}";
         }
     }
 }

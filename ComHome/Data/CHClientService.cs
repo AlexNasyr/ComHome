@@ -12,5 +12,7 @@ namespace ComHome.Data {
         }
         public Task<int> GetSomeData() => Task.FromResult(5);
         public Task<string> GetHistorical() => Task.FromResult(repository.GetHistoricalMeasurements());
+
+        
     }
 }

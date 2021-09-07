@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ComHome.Data;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
 namespace ComHome {
     public class Program {
@@ -24,7 +25,8 @@ namespace ComHome {
                 .ConfigureServices(services => {
                     IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("secrets.json").Build();
                     services.AddHostedService<CHSensorService>();
-                    services.AddTransient<IComHomeRepository>(r => new ComHomeRepository(configuration.GetConnectionString("DefaultDB"))); //, ComHomeRepository>();
+                    services.AddTransient<DbMsSqlContext>(c => new DbMsSqlContext(configuration.GetConnectionString("DefaultDB")));
+                    services.AddTransient<IComHomeRepository, ComHomeRepository>();
                     services.AddTransient<CHClientService>();
                 });
     }
