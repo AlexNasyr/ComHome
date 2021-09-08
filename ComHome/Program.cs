@@ -25,8 +25,10 @@ namespace ComHome {
                 .ConfigureServices(services => {
                     IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("secrets.json").Build();
                     services.AddHostedService<CHSensorService>();
-                    services.AddDbContext<DbMsSqlContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultDB")));
-                    services.AddTransient<IComHomeDBContext, DbMsSqlContext>();
+                    //services.AddDbContext<DbMssqlContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultDB")));
+                    services.AddDbContext<DbPgContext>(options => options.UseNpgsql(configuration.GetConnectionString("PgSql")));
+                    //services.AddTransient<IComHomeDBContext, DbMssqlContext>();
+                    services.AddTransient<IComHomeDBContext, DbPgContext>();
                     services.AddTransient<IComHomeRepository, ComHomeRepository>();
                     services.AddTransient<CHClientService>();
                 });
