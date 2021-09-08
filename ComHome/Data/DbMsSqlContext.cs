@@ -5,13 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace ComHome.Data {
-    public class DbMsSqlContext : DbContext {
-        private string connectionString;
-        public DbMsSqlContext(string connString) {
-            connectionString = connString;
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-            optionsBuilder.UseSqlServer(connectionString);
+    public class DbMsSqlContext : DbContext, IComHomeDBContext {
+        DbContextOptions options;
+        public DbMsSqlContext(DbContextOptions<DbMsSqlContext> options) : base(options) {
+            this.options = options;
         }
 
         //DBSet here
