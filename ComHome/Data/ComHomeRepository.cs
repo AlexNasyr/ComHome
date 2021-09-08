@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 
 namespace ComHome.Data {
     public class ComHomeRepository : IComHomeRepository {
-        private IComHomeDBContext dbContext;
-        public ComHomeRepository(IComHomeDBContext context) {
+        private DbPgContext dbContext;
+        public ComHomeRepository(DbPgContext context) {
             dbContext = context;
         }
-
         public ComHomeRepository() {
         }
-        //using dbcontext.dbsets here
+
+        public string AddSensor(Sensor sensor) {
+            dbContext.Sensors.Add(sensor);
+            dbContext.SaveChanges();
+            return "success";
+        }
 
         public string GetHistoricalMeasurements() {
             return $"historical data from DB with connStr {dbContext}";

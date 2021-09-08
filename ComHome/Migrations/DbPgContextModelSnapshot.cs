@@ -30,7 +30,7 @@ namespace ComHome.Migrations
                         .HasMaxLength(32)
                         .HasColumnType("NCHAR");
 
-                    b.Property<string>("SensorType")
+                    b.Property<int?>("SensorType")
                         .HasMaxLength(32)
                         .HasColumnType("NCHAR");
 

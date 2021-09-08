@@ -15,7 +15,9 @@ namespace ComHome {
     public class Program {
         public static void Main(string[] args) {
             CreateHostBuilder(args).Build().Run();
+
         }
+
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
@@ -23,14 +25,16 @@ namespace ComHome {
                     webBuilder.UseStartup<Startup>();
                 })
                 .ConfigureServices(services => {
-                    IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("secrets.json").Build();
+                    IConfiguration conf = new ConfigurationBuilder().AddJsonFile("secrets.json").Build();
                     services.AddHostedService<CHSensorService>();
                     //services.AddDbContext<DbMssqlContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultDB")));
-                    services.AddDbContext<DbPgContext>(options => options.UseNpgsql(configuration.GetConnectionString("PgSql")));
+                    services.AddDbContext<DbPgContext>(options => options.UseNpgsql(conf.GetConnectionString("PgSql")));
                     //services.AddTransient<IComHomeDBContext, DbMssqlContext>();
-                    services.AddTransient<IComHomeDBContext, DbPgContext>();
+                    //services.AddTransient<IComHomeDBContext, DbPgContext>();
                     services.AddTransient<IComHomeRepository, ComHomeRepository>();
                     services.AddTransient<CHClientService>();
                 });
     }
 }
+
+
