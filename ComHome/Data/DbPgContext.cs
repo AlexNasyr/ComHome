@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace ComHome.Data {
-    public class DbPgContext : DbContext {
+    public class DbPgContext : DbContext, IComHomeDBContext {
         public DbPgContext(DbContextOptions<DbPgContext> options) : base(options) {
         }
 

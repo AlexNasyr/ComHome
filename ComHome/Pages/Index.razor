@@ -20,7 +20,9 @@
 <button @onclick="Send" disabled="@(!IsConnected)">Send</button>
 <button @onclick="Request" disabled="@(!IsConnected)">Request</button>
 <button @onclick="Get5" disabled="@(!IsConnected)">Get 5</button>
-<button @onclick="GetHist" disabled="@(!IsConnected)">Get 5</button>
+<button @onclick="GetHist" disabled="@(!IsConnected)">Hist</button>
+
+<button @onclick="Add" disabled="@(!IsConnected)">AddSensor</button>
 
 <hr>
 
@@ -73,6 +75,9 @@
         string res = await ClientService.GetHistorical();
         messages.Add(res.ToString());
         StateHasChanged();
+    }
+    async Task Add() {
+        await ClientService.InsertSensor();
     }
 
     public bool IsConnected => hubConnection.State == HubConnectionState.Connected;

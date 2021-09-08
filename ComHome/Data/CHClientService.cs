@@ -11,8 +11,10 @@ namespace ComHome.Data {
             repository = repo;
         }
         public Task<int> GetSomeData() => Task.FromResult(5);
-        //public Task<string> GetHistorical() => Task.FromResult(repository.GetHistoricalMeasurements());
-        public Task<string> GetHistorical() => Task.FromResult(repository.AddSensor(new Sensor() { SensorUID = "999", SensorName = "HallTermometer", SensorType = SensorType.Temperature}));
+        public Task<string> GetHistorical() => Task.FromResult(repository.GetHistoricalMeasurements());
+        
+        
+        public Task<bool> InsertSensor() => Task.FromResult(repository.AddSensor(new Sensor() { SensorUID = "999", SensorName = "HallTermometer", SensorType = SensorType.Temperature}));
 
 
     }

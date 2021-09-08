@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ComHome.Data
 {
     public interface IComHomeRepository {
-        string AddSensor(Sensor sensor);
+        bool AddSensor(Sensor sensor);
         string GetHistoricalMeasurements();
     }
 }

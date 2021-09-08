@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace ComHome.Data {
     public class ComHomeRepository : IComHomeRepository {
-        private DbPgContext dbContext;
-        public ComHomeRepository(DbPgContext context) {
-            dbContext = context;
+        private DbMssqlContext context;
+        public ComHomeRepository(DbMssqlContext dbContext) {
+            context = dbContext;
         }
         public ComHomeRepository() {
         }
 
-        public string AddSensor(Sensor sensor) {
-            dbContext.Sensors.Add(sensor);
-            dbContext.SaveChanges();
-            return "success";
+        public bool AddSensor(Sensor sensor) {
+            context.Sensors.Add(sensor);
+            context.SaveChanges();
+            return true;
         }
 
         public string GetHistoricalMeasurements() {
-            return $"historical data from DB with connStr {dbContext}";
+            return $"historical data from DB with connStr {context}";
         }
     }
 }
