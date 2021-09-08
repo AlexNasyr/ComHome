@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ComHome.Data {
     public class DbMsSqlContext : DbContext, IComHomeDBContext {
-        DbContextOptions options;
+        private DbContextOptions options;
         public DbMsSqlContext(DbContextOptions<DbMsSqlContext> options) : base(options) {
             this.options = options;
         }

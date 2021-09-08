@@ -14,7 +14,5 @@ namespace ComHome.Hubs {
             string[] array = new string[] { "q", "w", "e" };
             await Clients.All.SendAsync("BigDataMessage", array);
         }
-
-
     }
 }

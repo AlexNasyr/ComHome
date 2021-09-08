@@ -34,6 +34,5 @@ namespace ComHome.Data {
         public void Dispose() {
             timer?.Dispose();
         }
-
     }
 }
