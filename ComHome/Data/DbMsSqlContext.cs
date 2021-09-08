@@ -11,6 +11,12 @@ namespace ComHome.Data {
             this.options = options;
         }
 
-        //DBSet here
+        DbSet<Sensor> Sensors { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) {
+            modelBuilder.Entity<Sensor>(entity => {
+                entity.Property(e => e.SensorName).HasColumnType("NCHAR").HasMaxLength(32).IsRequired();
+            });
+        }
     }
 }
