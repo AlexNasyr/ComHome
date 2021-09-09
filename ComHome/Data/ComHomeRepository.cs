@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace ComHome.Data {
     public class ComHomeRepository : IComHomeRepository {
-        private DbMssqlContext context;
-        public ComHomeRepository(DbMssqlContext dbContext) {
-            context = dbContext;
+        //private DbMssqlContext context;
+        private DbPgContext context;
+        //public ComHomeRepository(DbMssqlContext dbContext) {
+        public ComHomeRepository(DbPgContext dbContext) {
+                context = dbContext;
         }
         public ComHomeRepository() {
         }
