@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace ComHome.Data {
     public interface IComHomeDBContext {
-
+        public DbSet<Sensor> Sensors { get; set; }
     }
 }

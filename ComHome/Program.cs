@@ -26,12 +26,13 @@ namespace ComHome {
                 .ConfigureServices(services => {
                     IConfiguration conf = new ConfigurationBuilder().AddJsonFile("secrets.json").Build();
                     services.AddHostedService<CHSensorService>();
-                    services.AddTransient<IComHomeDBContext, DbMssqlContext>();
+                    //services.AddTransient<IComHomeDBContext, DbMssqlContext>();
+                    //services.AddDbContext<DbMssqlContext>(options => options.UseSqlServer(conf.GetConnectionString("MssqlDB")));
                     services.AddTransient<IComHomeDBContext, DbPgContext>();
+                    services.AddDbContext<DbPgContext>(options => options.UseNpgsql(conf.GetConnectionString("PgSqlDB"))); 
+                    
                     services.AddTransient<IComHomeRepository, ComHomeRepository>();
                     services.AddTransient<CHClientService>();
-                    services.AddDbContext<DbMssqlContext>(options => options.UseSqlServer(conf.GetConnectionString("MssqlDB")));
-                    services.AddDbContext<DbPgContext>(options => options.UseNpgsql(conf.GetConnectionString("PgSqlDB")));
                 });
     }
 }
